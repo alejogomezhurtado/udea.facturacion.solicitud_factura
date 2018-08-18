@@ -18,7 +18,7 @@ public class SolicitudController {
     public @ResponseBody ResponseEntity<DtoSolicitud> nuevaSolicitud(@RequestBody DtoSolicitud solicitud){
         logger.info("Ingresa Solicitud \n{"+solicitud.toString()+"}");
         publicador.publicarMensajeAsync("facturacion.solicitada", "", new Gson().toJson(solicitud));
-        logger.info("Publica Solicitud");
+        logger.info("Solicitud Enviando a Facturacion");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
