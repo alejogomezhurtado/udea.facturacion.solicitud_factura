@@ -1,10 +1,8 @@
 package udea.facturacion.solicitud.infraestructura;
 
-import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,16 +25,6 @@ public class RabbitConf {
     public RabbitTemplate rabbitTemplate(){
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         return  rabbitTemplate;
-    }
-
-    @Bean
-    public SimpleMessageListenerContainer container(ConnectionFactory connectionFactory){
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames("facturacion.solicitada.factura");
-        //container.setMessageListener(new Consumidor());
-        container.setAcknowledgeMode(AcknowledgeMode.AUTO);
-        return container;
     }
 
 }
